@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import Alert from "./Alert";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { setAlert } from "../redux/actions";
+import PropTypes from "prop-types";
 
-const Register = () => {
+const Register = ({ setAlert }) => {
     const [{ name, email, password, password2 }, setState] = useState({
         name: "",
         email: "",
@@ -16,7 +20,7 @@ const Register = () => {
     const handleSubmit = async e => {
         e.preventDefault();
         if (password !== password2) {
-            console.log("pass dnm");
+            setAlert("Passwords do not match", "danger");
         } else {
             const newUser = { name, email, password, password2 };
             console.table(newUser);
@@ -24,7 +28,8 @@ const Register = () => {
     };
 
     return (
-        <>
+        <section className="container">
+            <Alert />
             <h1 className="large text-primary">Sign Up</h1>
             <p className="lead">
                 <i className="fas fa-user"></i> Create Your Account
@@ -82,8 +87,12 @@ const Register = () => {
             <p className="my-1">
                 Already have an account? <Link to="/login">Sign In</Link>
             </p>
-        </>
+        </section>
     );
 };
 
-export default Register;
+Register.propTypes = {
+    setAlert: PropTypes.func.isRequired
+};
+
+export default connect(null, { setAlert })(Register);

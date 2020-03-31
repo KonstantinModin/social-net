@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Alert from "./Alert";
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -19,7 +20,8 @@ const Login = () => {
     };
 
     return (
-        <>
+        <section className="container">
+            <Alert />
             <h1 className="large text-primary">Sign In</h1>
             <p className="lead">
                 <i className="fas fa-user"></i> Sign Into Your Account
@@ -53,7 +55,7 @@ const Login = () => {
             <p className="my-1">
                 Don't have an account? <Link to="/register">Register</Link>
             </p>
-        </>
+        </section>
     );
 };
 

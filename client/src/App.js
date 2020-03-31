@@ -19,10 +19,8 @@ const App = () => (
         <BrowserRouter>
             <NavBar />
             <Route exact path="/" component={Landing} />
-            <section className="container">
-                <Route path="/register" component={Register} />
-                <Route path="/login" component={Login} />
-            </section>
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
             <Redirect to="/" />
         </BrowserRouter>
     </Provider>

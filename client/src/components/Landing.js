@@ -6,10 +6,11 @@ const Landing = () => {
         <section className="landing">
             <div className="dark-overlay">
                 <div className="landing-inner">
+                    <h1 className="x-large">PSN</h1>
                     <h1 className="x-large">Psychologists social network</h1>
                     <p className="lead">
-                        Create a psychologist profile, share posts and thoughts
-                        get help from other psychologists
+                        Create your profile, share posts and thoughts, discuss
+                        with your colleagues
                     </p>
                     <div className="buttons">
                         <Link to="/register" className="btn btn-primary">
