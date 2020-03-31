@@ -2,7 +2,7 @@ import * as types from "../constants";
 
 const INITIAL_STATE = {
     token: localStorage.getItem("token"),
-    isAuthenticated: false,
+    isAuthenticated: null,
     loading: true,
     user: null,
     error: null
@@ -11,14 +11,17 @@ const INITIAL_STATE = {
 const auth = (state = INITIAL_STATE, { type, payload }) => {
     switch (type) {
         case types.REGISTER_SUCCESS:
+        case types.LOGIN_SUCCESS:
             localStorage.setItem("token", payload.token);
             return {
                 ...payload,
-                isAuthenticated: true,
+                isAuthenticated: false,
                 loading: false,
                 error: false
             };
         case types.REGISTER_FAIL:
+        case types.AUTH_ERROR:
+        case types.LOGIN_FAIL:
             localStorage.removeItem("token");
             return {
                 token: null,
@@ -27,6 +30,14 @@ const auth = (state = INITIAL_STATE, { type, payload }) => {
                 user: null,
                 error: payload
             };
+        case types.USER_LOADED:
+            return {
+                ...state,
+                isAuthenticated: true,
+                loading: false,
+                user: payload
+            };
+
         default:
             return state;
     }

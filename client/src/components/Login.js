@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Alert from "./Alert";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { login } from "../redux/actions";
 
-const Login = () => {
+const Login = ({ login, isAuthenticated }) => {
     const [{ email, password }, setState] = useState({
         email: "",
         password: ""
@@ -17,7 +20,12 @@ const Login = () => {
 
         const newUser = { email, password };
         console.table(newUser);
+        login(newUser);
     };
+
+    if (isAuthenticated) {
+        return <Redirect to="/dashboard" />;
+    }
 
     return (
         <section className="container">
@@ -59,4 +67,12 @@ const Login = () => {
     );
 };
 
-export default Login;
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired
+};
+
+export default connect(
+    ({ auth: { isAuthenticated } }) => ({ isAuthenticated }),
+    { login }
+)(Login);
