@@ -34,10 +34,13 @@ export const register = ({ name, email, password }) => async dispatch => {
         const res = await axios.post("/api/users", body, config);
         dispatch(registerSuccess(res.data));
     } catch (err) {
-        const error = err.response.data.errors
+        const errors = err.response.data.errors;
         console.error("Something went wrong");
-        dispatch(registerFail(error));
-        dispatch(setAlert)
+        if (errors) {
+            // Show alerts
+            errors.forEach(({ msg }) => dispatch(setAlert(msg, "danger")));
+        }
+        dispatch(registerFail(errors));
     }
 };
 
@@ -50,7 +53,7 @@ const registerSuccess = payload => {
 
 const registerFail = payload => {
     return {
-        type: types.REGISTER_SUCCESS,
+        type: types.REGISTER_FAIL,
         payload
     };
 };
