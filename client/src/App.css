@@ -316,6 +316,14 @@ button {
     display: flex;
 }
 
+.navbar ul li span.logout {
+    cursor: pointer;
+}
+
+.navbar ul li span.logout:hover {
+    color: var(--primary-color);
+}
+
 .navbar a {
     color: #fff;
     padding: 0.45rem;

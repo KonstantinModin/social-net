@@ -16,3 +16,11 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 
 // Logout
 export const LOGOUT = "LOGOUT";
+
+// Set Auth loading to true;
+export const SET_AUTH_LOADING_TRUE = "SET_AUTH_LOADING_TRUE";
+
+// Profile
+export const GET_PROFILE_REQUEST = "GET_PROFILE_REQUEST";
+export const GET_PROFILE_SUCCESS = "GET_PROFILE_SUCCESS";
+export const GET_PROFILE_FAILURE = "GET_PROFILE_FAILURE";

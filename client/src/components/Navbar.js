@@ -4,15 +4,16 @@ import { connect } from "react-redux";
 import { logout } from "../redux/actions";
 import PropTypes from "prop-types";
 import logo from "../img/ps.jpg";
+import Spinner from "./Spinner";
 
-const Navbar = ({ logout, isAuth }) => {
+const Navbar = ({ logout, isAuth, loading }) => {
     const authLinks = (
         <>
             <li>
                 <NavLink to="/dashboard">Dashboard</NavLink>
             </li>
             <li>
-                <span onClick={logout}>
+                <span className="logout" onClick={logout}>
                     <i className="fas fa-sign-out-alt"></i>
                     <span className="hide-sm"> Logout</span>
                 </span>
@@ -39,19 +40,21 @@ const Navbar = ({ logout, isAuth }) => {
             <Link className="logo" to="/">
                 <img src={logo} alt="background"></img> <h1>PSN</h1>
             </Link>
-            <ul>{isAuth ? authLinks : guestLinks}</ul>
+            <ul>{loading ? <Spinner /> : isAuth ? authLinks : guestLinks}</ul>
         </nav>
     );
 };
 
 Navbar.propTypes = {
     isAuth: PropTypes.bool,
+    loading: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({ auth: { isAuthenticated: isAuth } }) => {
+const mapStateToProps = ({ auth: { isAuthenticated: isAuth, loading } }) => {
     return {
-        isAuth
+        isAuth,
+        loading
     };
 };
 

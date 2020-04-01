@@ -24,8 +24,15 @@ const removeAlert = id => {
     };
 };
 
+const setAuthLoadingToTrue = () => {
+    return {
+        type: types.SET_AUTH_LOADING_TRUE
+    };
+};
+
 // Register User
 export const register = ({ name, email, password }) => async dispatch => {
+    dispatch(setAuthLoadingToTrue());
     const config = {
         headers: {
             "Content-Type": "application/json"
@@ -63,6 +70,7 @@ const registerFail = payload => {
 
 // Load User
 export const loadUser = () => async dispatch => {
+    dispatch(setAuthLoadingToTrue());
     if (localStorage.token) {
         setAuthToken(localStorage.token);
     }
@@ -91,6 +99,7 @@ const authError = payload => {
 
 // Login User
 export const login = ({ email, password }) => async dispatch => {
+    dispatch(setAuthLoadingToTrue());
     const config = {
         headers: {
             "Content-Type": "application/json"
@@ -127,9 +136,41 @@ const loginFail = payload => {
 };
 
 // Logout / Clear Profile
-
 export const logout = () => {
     return {
         type: types.LOGOUT
+    };
+};
+
+// Profile
+// Get current users profile
+export const getCurrentProfile = () => async dispatch => {
+    dispatch(getProfileRequest());
+    try {
+        const res = await axios.get("/api/profile/me");
+        dispatch(getProfileSuccess(res.data));
+    } catch (error) {
+        dispatch(getProfileFailure(error));
+        dispatch(setAlert(error.response.statusText, "danger"));
+    }
+};
+
+const getProfileRequest = () => {
+    return {
+        type: types.GET_PROFILE_REQUEST
+    };
+};
+
+const getProfileSuccess = payload => {
+    return {
+        type: types.GET_PROFILE_SUCCESS,
+        payload
+    };
+};
+
+const getProfileFailure = payload => {
+    return {
+        type: types.GET_PROFILE_FAILURE,
+        payload
     };
 };

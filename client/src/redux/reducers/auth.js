@@ -16,7 +16,7 @@ const auth = (state = INITIAL_STATE, { type, payload }) => {
             return {
                 ...payload,
                 isAuthenticated: false,
-                loading: false,
+                loading: true,
                 error: false
             };
         case types.REGISTER_FAIL:
@@ -37,6 +37,11 @@ const auth = (state = INITIAL_STATE, { type, payload }) => {
                 isAuthenticated: true,
                 loading: false,
                 user: payload
+            };
+        case types.SET_AUTH_LOADING_TRUE:
+            return {
+                ...state,
+                loading: true
             };
 
         default:
