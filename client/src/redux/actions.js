@@ -125,3 +125,11 @@ const loginFail = payload => {
         payload
     };
 };
+
+// Logout / Clear Profile
+
+export const logout = () => {
+    return {
+        type: types.LOGOUT
+    };
+};
