@@ -10,6 +10,7 @@ import Landing from "./components/Landing";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
+import CreateProfile from "./components/forms/CreateProfile";
 
 // CSS
 import "./App.css";
@@ -32,6 +33,12 @@ const App = () => {
                 path="/dashboard"
                 render={() =>
                     isAuth ? <Dashboard /> : <Redirect to="/login" />
+                }
+            />
+            <Route
+                path="/create-profile"
+                render={() =>
+                    isAuth ? <CreateProfile /> : <Redirect to="/login" />
                 }
             />
             <Redirect to="/" />
