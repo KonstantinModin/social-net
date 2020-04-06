@@ -5,7 +5,7 @@ const INITIAL_STATE = {
     profiles: [],
     repos: [],
     loading: false,
-    error: null
+    error: null,
 };
 
 const profile = (state = INITIAL_STATE, { type, payload }) => {
@@ -13,7 +13,7 @@ const profile = (state = INITIAL_STATE, { type, payload }) => {
         case types.GET_PROFILE_REQUEST:
             return {
                 ...state,
-                loading: true
+                loading: true,
             };
 
         case types.GET_PROFILE_SUCCESS:
@@ -21,7 +21,7 @@ const profile = (state = INITIAL_STATE, { type, payload }) => {
                 ...state,
                 profile: payload,
                 loading: false,
-                error: null
+                error: null,
             };
 
         case types.GET_PROFILE_FAILURE:
@@ -29,8 +29,10 @@ const profile = (state = INITIAL_STATE, { type, payload }) => {
                 ...state,
                 profile: null,
                 loading: false,
-                error: payload
+                error: payload,
             };
+        case types.CLEAR_PROFILE:
+            return INITIAL_STATE;
 
         default:
             return state;

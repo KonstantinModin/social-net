@@ -10,7 +10,10 @@ const Navbar = ({ logout, isAuth, loading }) => {
     const authLinks = (
         <>
             <li>
-                <NavLink to="/dashboard">Dashboard</NavLink>
+                <NavLink to="/dashboard">
+                    <i className="fas fa-user"></i>
+                    <span className="hide-sm"> Dashboard</span>
+                </NavLink>
             </li>
             <li>
                 <span className="logout" onClick={logout}>
@@ -48,13 +51,13 @@ const Navbar = ({ logout, isAuth, loading }) => {
 Navbar.propTypes = {
     isAuth: PropTypes.bool,
     loading: PropTypes.bool.isRequired,
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ auth: { isAuthenticated: isAuth, loading } }) => {
     return {
         isAuth,
-        loading
+        loading,
     };
 };
 

@@ -4,39 +4,39 @@ import setAuthToken from "../utils/setAuthToken";
 import { v4 as uuid } from "uuid";
 
 // Alerts
-export const setAlert = (msg, alertType, timeout = 3000) => dispatch => {
+export const setAlert = (msg, alertType, timeout = 3000) => (dispatch) => {
     const id = uuid();
     dispatch({
         type: types.SET_ALERT,
         payload: {
             id,
             msg,
-            type: alertType
-        }
+            type: alertType,
+        },
     });
     setTimeout(() => dispatch(removeAlert(id)), timeout);
 };
 
-const removeAlert = id => {
+const removeAlert = (id) => {
     return {
         type: types.REMOVE_ALERT,
-        payload: id
+        payload: id,
     };
 };
 
 const setAuthLoadingToTrue = () => {
     return {
-        type: types.SET_AUTH_LOADING_TRUE
+        type: types.SET_AUTH_LOADING_TRUE,
     };
 };
 
 // Register User
-export const register = ({ name, email, password }) => async dispatch => {
+export const register = ({ name, email, password }) => async (dispatch) => {
     dispatch(setAuthLoadingToTrue());
     const config = {
         headers: {
-            "Content-Type": "application/json"
-        }
+            "Content-Type": "application/json",
+        },
     };
     const body = JSON.stringify({ name, email, password });
     try {
@@ -54,22 +54,22 @@ export const register = ({ name, email, password }) => async dispatch => {
     }
 };
 
-const registerSuccess = payload => {
+const registerSuccess = (payload) => {
     return {
         type: types.REGISTER_SUCCESS,
-        payload
+        payload,
     };
 };
 
-const registerFail = payload => {
+const registerFail = (payload) => {
     return {
         type: types.REGISTER_FAIL,
-        payload
+        payload,
     };
 };
 
 // Load User
-export const loadUser = () => async dispatch => {
+export const loadUser = () => async (dispatch) => {
     dispatch(setAuthLoadingToTrue());
     if (localStorage.token) {
         setAuthToken(localStorage.token);
@@ -83,27 +83,27 @@ export const loadUser = () => async dispatch => {
     }
 };
 
-const userLoaded = payload => {
+const userLoaded = (payload) => {
     return {
         type: types.USER_LOADED,
-        payload
+        payload,
     };
 };
 
-const authError = payload => {
+const authError = (payload) => {
     return {
         type: types.AUTH_ERROR,
-        payload
+        payload,
     };
 };
 
 // Login User
-export const login = ({ email, password }) => async dispatch => {
+export const login = ({ email, password }) => async (dispatch) => {
     dispatch(setAuthLoadingToTrue());
     const config = {
         headers: {
-            "Content-Type": "application/json"
-        }
+            "Content-Type": "application/json",
+        },
     };
     const body = JSON.stringify({ email, password });
     try {
@@ -121,30 +121,29 @@ export const login = ({ email, password }) => async dispatch => {
     }
 };
 
-const loginSuccess = payload => {
+const loginSuccess = (payload) => {
     return {
         type: types.LOGIN_SUCCESS,
-        payload
+        payload,
     };
 };
 
-const loginFail = payload => {
+const loginFail = (payload) => {
     return {
         type: types.LOGIN_FAIL,
-        payload
+        payload,
     };
 };
 
 // Logout / Clear Profile
-export const logout = () => {
-    return {
-        type: types.LOGOUT
-    };
+export const logout = () => (dispatch) => {
+    dispatch({ type: types.CLEAR_PROFILE });
+    dispatch({ type: types.LOGOUT });
 };
 
 // Profile
 // Get current users profile
-export const getCurrentProfile = () => async dispatch => {
+export const getCurrentProfile = () => async (dispatch) => {
     dispatch(getProfileRequest());
     try {
         const res = await axios.get("/api/profile/me");
@@ -157,20 +156,20 @@ export const getCurrentProfile = () => async dispatch => {
 
 const getProfileRequest = () => {
     return {
-        type: types.GET_PROFILE_REQUEST
+        type: types.GET_PROFILE_REQUEST,
     };
 };
 
-const getProfileSuccess = payload => {
+const getProfileSuccess = (payload) => {
     return {
         type: types.GET_PROFILE_SUCCESS,
-        payload
+        payload,
     };
 };
 
-const getProfileFailure = payload => {
+const getProfileFailure = (payload) => {
     return {
         type: types.GET_PROFILE_FAILURE,
-        payload
+        payload,
     };
 };
