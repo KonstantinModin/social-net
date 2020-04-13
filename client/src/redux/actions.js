@@ -187,12 +187,12 @@ export const createProfile = (formData, history, edit = false) => async (
         };
         const res = await axios.post("/api/profile", formData, config);
         dispatch(getProfileSuccess(res.data));
-        dispatch(setAlert(`Profile ${edit ? "Upd" : "Cre"}ated`));
+        dispatch(setAlert(`Profile ${edit ? "Upd" : "Cre"}ated`, "success"));
         if (!edit) {
             history.push("/dashboard");
         }
     } catch (error) {
-        const errors = err.response.data.errors;
+        const errors = error.response.data.errors;
         console.error("Something went wrong");
         if (errors) {
             // Show alerts

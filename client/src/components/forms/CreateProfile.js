@@ -1,24 +1,12 @@
 import React, { useState } from "react";
+import Alert from "../Alert";
+import { useHistory } from "react-router-dom";
+import { createProfile } from "../../redux/actions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-const CreateProfile = (props) => {
-    const [
-        {
-            company,
-            website,
-            location,
-            bio,
-            status,
-            skills,
-            facebook,
-            twitter,
-            instagram,
-            linkedin,
-            youtube,
-        },
-        setState,
-    ] = useState({
+const CreateProfile = ({ createProfile }) => {
+    const [state, setState] = useState({
         company: "",
         website: "",
         location: "",
@@ -32,12 +20,34 @@ const CreateProfile = (props) => {
         youtube: "",
     });
 
+    const {
+        company,
+        website,
+        location,
+        bio,
+        status,
+        skills,
+        facebook,
+        twitter,
+        instagram,
+        linkedin,
+        youtube,
+    } = state;
+
     const [socials, setSocials] = useState(false);
     const handleChange = ({ target: { name, value } }) => {
         setState((state) => ({ ...state, [name]: value }));
     };
+
+    const history = useHistory();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        createProfile(state, history);
+    };
     return (
         <section className="container">
+            <Alert />
             {JSON.stringify({
                 company,
                 website,
@@ -57,7 +67,7 @@ const CreateProfile = (props) => {
                 make your profile stand out
             </p>
             <small>* = required field</small>
-            <form className="form">
+            <form className="form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <select
                         name="status"
@@ -225,6 +235,8 @@ const CreateProfile = (props) => {
     );
 };
 
-CreateProfile.propTypes = {};
+CreateProfile.propTypes = {
+    createProfile: PropTypes.func.isRequired,
+};
 
-export default CreateProfile;
+export default connect(null, { createProfile })(CreateProfile);
