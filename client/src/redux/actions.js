@@ -173,3 +173,31 @@ const getProfileFailure = (payload) => {
         payload,
     };
 };
+
+// Create or update profile
+export const createProfile = (formData, history, edit = false) => async (
+    dispatch
+) => {
+    dispatch(getProfileRequest());
+    try {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        const res = await axios.post("/api/profile", formData, config);
+        dispatch(getProfileSuccess(res.data));
+        dispatch(setAlert(`Profile ${edit ? "Upd" : "Cre"}ated`));
+        if (!edit) {
+            history.push("/dashboard");
+        }
+    } catch (error) {
+        const errors = err.response.data.errors;
+        console.error("Something went wrong");
+        if (errors) {
+            // Show alerts
+            errors.forEach(({ msg }) => dispatch(setAlert(msg, "danger")));
+        }
+        dispatch(getProfileFailure(error));
+    }
+};
