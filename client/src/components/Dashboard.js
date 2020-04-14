@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Alert from "./Alert";
 import Spinner from "./Spinner";
+import DashActions from "./DashActions";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../redux/actions";
@@ -28,7 +29,9 @@ const Dashboard = ({
                         {user && user.name}
                     </p>
                     {profile !== null ? (
-                        <h1>has</h1>
+                        <>
+                            <DashActions />
+                        </>
                     ) : (
                         <>
                             <p>
