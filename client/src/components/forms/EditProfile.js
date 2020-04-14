@@ -5,7 +5,11 @@ import { createProfile, getCurrentProfile } from "../../redux/actions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-const EditProfile = ({ createProfile, getCurrentProfile }) => {
+const EditProfile = ({
+    createProfile,
+    profile: { profile, loading },
+    getCurrentProfile,
+}) => {
     const [state, setState] = useState({
         company: "",
         website: "",
