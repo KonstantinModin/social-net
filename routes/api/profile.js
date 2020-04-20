@@ -59,19 +59,7 @@ router.post(
             instagram,
             linkedin,
         } = req.body;
-        console.table({
-            company,
-            website,
-            location,
-            bio,
-            status,
-            githubusername,
-            skills,
-            facebook,
-            twitter,
-            instagram,
-            linkedin,
-        });
+
         // Build profile object
         const profileFields = {};
         profileFields.user = req.user.id;
