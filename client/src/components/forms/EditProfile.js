@@ -44,7 +44,7 @@ const EditProfile = ({
     };
 
     useEffect(() => {
-        getCurrentProfile();
+        if (!profile) getCurrentProfile();
         console.log("profile from useEffect=", profile);
         if (!loading) setState(profile);
     }, [loading]);
@@ -53,7 +53,7 @@ const EditProfile = ({
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        createProfile(state, history);
+        createProfile(state, history, true);
     };
     return (
         <section className="container">
