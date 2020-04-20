@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Alert from "../Alert";
 import { useHistory } from "react-router-dom";
 import { createProfile, getCurrentProfile } from "../../redux/actions";
@@ -42,6 +42,12 @@ const EditProfile = ({
     const handleChange = ({ target: { name, value } }) => {
         setState((state) => ({ ...state, [name]: value }));
     };
+
+    useEffect(() => {
+        getCurrentProfile();
+        console.log("profile from useEffect=", profile);
+        if (!loading) setState(profile);
+    }, [loading]);
 
     const history = useHistory();
 
@@ -239,7 +245,7 @@ const EditProfile = ({
     );
 };
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
     createProfile: PropTypes.func.isRequired,
     getCurrentProfile: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired,
