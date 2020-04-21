@@ -12,6 +12,7 @@ import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import CreateProfile from "./components/forms/CreateProfile";
 import EditProfile from "./components/forms/EditProfile";
+import AddExperience from "./components/forms/AddExperience";
 
 // CSS
 import "./App.css";
@@ -48,6 +49,13 @@ const App = () => {
                     isAuth ? <EditProfile /> : <Redirect to="/login" />
                 }
             />
+            <Route
+                path="/add-experience"
+                render={() =>
+                    isAuth ? <AddExperience /> : <Redirect to="/login" />
+                }
+            />
+
             <Redirect to="/" />
         </BrowserRouter>
     );

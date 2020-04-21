@@ -156,7 +156,6 @@ const CreateProfile = ({ createProfile }) => {
                         Tell us a little about yourself
                     </small>
                 </div>
-
                 <div className="my-2">
                     <button
                         onClick={() => setSocials((s) => !s)}
@@ -179,7 +178,6 @@ const CreateProfile = ({ createProfile }) => {
                                 onChange={handleChange}
                             />
                         </div>
-
                         <div className="form-group social-input">
                             <i className="fab fa-facebook fa-2x"></i>
                             <input
@@ -190,7 +188,6 @@ const CreateProfile = ({ createProfile }) => {
                                 onChange={handleChange}
                             />
                         </div>
-
                         <div className="form-group social-input">
                             <i className="fab fa-youtube fa-2x"></i>
                             <input
@@ -201,7 +198,6 @@ const CreateProfile = ({ createProfile }) => {
                                 onChange={handleChange}
                             />
                         </div>
-
                         <div className="form-group social-input">
                             <i className="fab fa-linkedin fa-2x"></i>
                             <input
@@ -212,7 +208,6 @@ const CreateProfile = ({ createProfile }) => {
                                 onChange={handleChange}
                             />
                         </div>
-
                         <div className="form-group social-input">
                             <i className="fab fa-instagram fa-2x"></i>
                             <input

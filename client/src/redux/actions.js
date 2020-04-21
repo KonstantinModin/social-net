@@ -201,3 +201,57 @@ export const createProfile = (formData, history, edit = false) => async (
         dispatch(getProfileFailure(error));
     }
 };
+
+// Add Experience
+export const addExperience = (formData, history) => async (dispatch) => {
+    try {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        const res = await axios.put(
+            "/api/profile/experience",
+            formData,
+            config
+        );
+        dispatch({ type: types.UPDATE_PROFILE, payload: res.data });
+
+        dispatch(setAlert("Experience added", "success"));
+
+        history.push("/dashboard");
+    } catch (error) {
+        const errors = error.response.data.errors;
+        console.error("Something went wrong");
+        if (errors) {
+            // Show alerts
+            errors.forEach(({ msg }) => dispatch(setAlert(msg, "danger")));
+        }
+        dispatch(getProfileFailure(error));
+    }
+};
+
+// Add Education
+export const addEducation = (formData, history) => async (dispatch) => {
+    try {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        const res = await axios.put("/api/profile/education", formData, config);
+        dispatch({ type: types.UPDATE_PROFILE, payload: res.data });
+
+        dispatch(setAlert("Education added", "success"));
+
+        history.push("/dashboard");
+    } catch (error) {
+        const errors = error.response.data.errors;
+        console.error("Something went wrong");
+        if (errors) {
+            // Show alerts
+            errors.forEach(({ msg }) => dispatch(setAlert(msg, "danger")));
+        }
+        dispatch(getProfileFailure(error));
+    }
+};

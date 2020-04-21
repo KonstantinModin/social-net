@@ -17,6 +17,7 @@ const profile = (state = INITIAL_STATE, { type, payload }) => {
             };
 
         case types.GET_PROFILE_SUCCESS:
+        case types.UPDATE_PROFILE:
             return {
                 ...state,
                 profile: payload,
