@@ -13,6 +13,7 @@ import Dashboard from "./components/Dashboard";
 import CreateProfile from "./components/forms/CreateProfile";
 import EditProfile from "./components/forms/EditProfile";
 import AddExperience from "./components/forms/AddExperience";
+import AddEducation from "./components/forms/AddEducation";
 
 // CSS
 import "./App.css";
@@ -55,7 +56,12 @@ const App = () => {
                     isAuth ? <AddExperience /> : <Redirect to="/login" />
                 }
             />
-
+            <Route
+                path="/add-education"
+                render={() =>
+                    isAuth ? <AddEducation /> : <Redirect to="/login" />
+                }
+            />
             <Redirect to="/" />
         </BrowserRouter>
     );
