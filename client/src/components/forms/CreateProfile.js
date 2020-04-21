@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Alert from "../Alert";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { createProfile } from "../../redux/actions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
