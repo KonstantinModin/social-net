@@ -13,11 +13,12 @@ const Exp = ({ experience }) => {
                         <th>Company</th>
                         <th className="hide-sm">Title</th>
                         <th className="hide-sm">Years</th>
+                        <th />
                     </tr>
                 </thead>
                 <tbody>
                     {experience.map(({ _id, company, title, from, to }) => (
-                        <td key={_id}>
+                        <tr key={_id}>
                             <td>{company}</td>
                             <td className="hide-sm">{title}</td>
                             <td>
@@ -28,7 +29,12 @@ const Exp = ({ experience }) => {
                                     "Now"
                                 )}
                             </td>
-                        </td>
+                            <td>
+                                <button className="btn btn-danger">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
                     ))}
                 </tbody>
             </table>
@@ -36,6 +42,8 @@ const Exp = ({ experience }) => {
     );
 };
 
-Exp.propTypes = {};
+Exp.propTypes = {
+    experience: PropTypes.array.isRequired,
+};
 
 export default Exp;
