@@ -22,9 +22,9 @@ const Exp = ({ experience }) => {
                             <td>{company}</td>
                             <td className="hide-sm">{title}</td>
                             <td>
-                                <Moment format="DD/MM/YYY">{from}</Moment> -{" "}
+                                <Moment format="DD/MM/YYYY">{from}</Moment> -{" "}
                                 {to ? (
-                                    <Moment format="DD/MM/YYY">{from}</Moment>
+                                    <Moment format="DD/MM/YYYY">{from}</Moment>
                                 ) : (
                                     "Now"
                                 )}
