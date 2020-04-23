@@ -96,7 +96,7 @@ const AddEducation = ({ addEducation }) => {
                             checked={current}
                             onChange={handleChange}
                         />{" "}
-                        Current Job
+                        Till now
                     </p>
                 </div>
                 {!current && (

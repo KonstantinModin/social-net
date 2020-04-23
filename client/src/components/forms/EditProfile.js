@@ -47,7 +47,7 @@ const EditProfile = ({
         if (!profile) getCurrentProfile();
         console.log("profile from useEffect=", profile);
         if (!loading) setState(profile);
-    }, [loading]);
+    }, [loading, getCurrentProfile, profile]);
 
     const history = useHistory();
 

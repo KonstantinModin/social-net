@@ -259,6 +259,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
 // Delete experience
 export const deleteExperience = (id) => async (dispatch) => {
     try {
+        console.log("delete Experience");
         const res = await axios.delete(`/api/profile/experience/${id}`);
         dispatch({ type: types.UPDATE_PROFILE, payload: res.data });
         dispatch(setAlert("Experience removed", "success"));
@@ -271,6 +272,7 @@ export const deleteExperience = (id) => async (dispatch) => {
 export const deleteEducation = (id) => async (dispatch) => {
     try {
         const res = await axios.delete(`/api/profile/education/${id}`);
+        console.log(res);
         dispatch({ type: types.UPDATE_PROFILE, payload: res.data });
         dispatch(setAlert("Education removed", "success"));
     } catch (error) {
@@ -282,7 +284,7 @@ export const deleteEducation = (id) => async (dispatch) => {
 export const deleteAccount = () => async (dispatch) => {
     if (window.confirm("Are you sure? This can NOT be undone!")) {
         try {
-            const res = await axios.delete(`/api/profile`);
+            await axios.delete(`/api/profile`);
             dispatch({ type: types.CLEAR_PROFILE });
             dispatch({ type: types.DELETE_ACCOUNT });
             dispatch(setAlert("Your accout has been permanantly deleted"));
