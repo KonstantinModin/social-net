@@ -5,7 +5,7 @@ const INITIAL_STATE = {
     isAuthenticated: null,
     loading: true,
     user: null,
-    error: null
+    error: null,
 };
 
 const auth = (state = INITIAL_STATE, { type, payload }) => {
@@ -17,31 +17,32 @@ const auth = (state = INITIAL_STATE, { type, payload }) => {
                 ...payload,
                 isAuthenticated: false,
                 loading: true,
-                error: false
+                error: false,
             };
         case types.REGISTER_FAIL:
         case types.AUTH_ERROR:
         case types.LOGIN_FAIL:
         case types.LOGOUT:
+        case types.DELETE_ACCOUNT:
             localStorage.removeItem("token");
             return {
                 token: null,
                 isAuthenticated: false,
                 loading: false,
                 user: null,
-                error: payload
+                error: payload,
             };
         case types.USER_LOADED:
             return {
                 ...state,
                 isAuthenticated: true,
                 loading: false,
-                user: payload
+                user: payload,
             };
         case types.SET_AUTH_LOADING_TRUE:
             return {
                 ...state,
-                loading: true
+                loading: true,
             };
 
         default:
