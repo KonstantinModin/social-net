@@ -30,6 +30,12 @@ const profile = (state = INITIAL_STATE, { type, payload }) => {
                 profiles: payload,
                 loading: false,
             };
+        case types.GET_REPOS:
+            return {
+                ...state,
+                repos: payload,
+                loading: false,
+            };
 
         case types.GET_PROFILE_FAILURE:
             return {

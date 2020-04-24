@@ -187,6 +187,30 @@ export const getProfiles = () => async (dispatch) => {
     }
 };
 
+// Get profile by id
+export const getProfileById = (userId) => async (dispatch) => {
+    dispatch(getProfileRequest()); // loading = true
+    try {
+        const res = await axios.get(`/api/profile/${userId}`);
+        dispatch(getProfileSuccess(res.data));
+    } catch (error) {
+        dispatch(getProfileFailure(error));
+        dispatch(setAlert(error.response.statusText, "danger"));
+    }
+};
+
+// Get GitHub repos
+export const getGithubRepos = (username) => async (dispatch) => {
+    dispatch(getProfileRequest()); // loading = true
+    try {
+        const res = await axios.get(`/api/profile/github/${username}`);
+        dispatch({ type: types.GET_REPOS, payload: res.data });
+    } catch (error) {
+        dispatch(getProfileFailure(error));
+        dispatch(setAlert(error.response.statusText, "danger"));
+    }
+};
+
 // Create or update profile
 export const createProfile = (formData, history, edit = false) => async (
     dispatch
