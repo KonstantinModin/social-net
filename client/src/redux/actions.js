@@ -174,6 +174,19 @@ const getProfileFailure = (payload) => {
     };
 };
 
+// Get all profiles
+export const getProfiles = () => async (dispatch) => {
+    dispatch({ type: types.CLEAR_PROFILE });
+    dispatch(getProfileRequest()); // loading = true
+    try {
+        const res = await axios.get("/api/profile");
+        dispatch({ type: types.GET_PROFILES, payload: res.data });
+    } catch (error) {
+        dispatch(getProfileFailure(error));
+        dispatch(setAlert(error.response.statusText, "danger"));
+    }
+};
+
 // Create or update profile
 export const createProfile = (formData, history, edit = false) => async (
     dispatch

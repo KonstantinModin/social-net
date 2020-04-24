@@ -24,6 +24,12 @@ const profile = (state = INITIAL_STATE, { type, payload }) => {
                 loading: false,
                 error: null,
             };
+        case types.GET_PROFILES:
+            return {
+                ...state,
+                profiles: payload,
+                loading: false,
+            };
 
         case types.GET_PROFILE_FAILURE:
             return {
