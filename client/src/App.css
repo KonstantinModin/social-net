@@ -1,9 +1,9 @@
 /* Global Styles */
 :root {
-    --primary-color: #17a2b8;
+    --primary-color: #167786;
     --dark-color: #343a40;
     --light-color: #f4f4f4;
-    --danger-color: #dc3545;
+    --danger-color: #a02935;
     --success-color: #28a745;
 }
 
@@ -133,10 +133,12 @@ img {
     padding: 0.4rem 1.3rem;
     font-size: 1rem;
     border: none;
+    border-radius: 0.5rem;
     cursor: pointer;
     margin-right: 0.5rem;
-    transition: opacity 0.2s ease-in;
+    transition: all 0.1s ease-in-out;
     outline: none;
+    margin-left: 0.5rem;
 }
 
 .badge {
@@ -207,6 +209,7 @@ img {
 
 .btn:hover {
     opacity: 0.8;
+    transform: scale(1.05);
 }
 
 .bg-light,
