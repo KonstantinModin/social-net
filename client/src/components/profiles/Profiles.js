@@ -9,7 +9,7 @@ import Alert from "../Alert";
 const Profiles = ({ getProfiles, profiles, loading }) => {
     useEffect(() => {
         getProfiles();
-    }, []);
+    }, [getProfiles]);
 
     return (
         <section className="container">

@@ -34,6 +34,7 @@ const AddEducation = ({ addEducation }) => {
     };
 
     const history = useHistory();
+    // console.log(history);
 
     const handleSubmit = (e) => {
         e.preventDefault();
