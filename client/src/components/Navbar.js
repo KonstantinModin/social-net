@@ -10,6 +10,9 @@ const Navbar = ({ logout, isAuth, loading }) => {
     const authLinks = (
         <>
             <li>
+                <NavLink to="/profiles">Psycologists</NavLink>
+            </li>
+            <li>
                 <NavLink to="/dashboard">
                     <i className="fas fa-user"></i>
                     <span className="hide-sm"> Dashboard</span>
@@ -26,6 +29,9 @@ const Navbar = ({ logout, isAuth, loading }) => {
 
     const guestLinks = (
         <>
+            <li>
+                <NavLink to="/profiles">Psycologists</NavLink>
+            </li>
             <li>
                 <NavLink to="/developers">Developers</NavLink>
             </li>
