@@ -8,12 +8,13 @@ const Profile = ({ getProfileById, match, profile, loading, auth }) => {
     useEffect(() => {
         getProfileById(match.params.id);
     }, [getProfileById]);
+    console.table({ getProfileById, match, profile, loading, auth });
     return <div>profile</div>;
 };
 
 Profile.propTypes = {
     getProfileById: PropTypes.func.isRequired,
-    profile: PropTypes.object.isRequired,
+    profile: PropTypes.object,
     auth: PropTypes.object.isRequired,
 };
 
