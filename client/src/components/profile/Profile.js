@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-router-dom";
+import { connect } from "react-redux";
 import Spinner from "../Spinner";
 import { getProfileById } from "../../redux/actions";
 
-const Profile = ({ getProfileById }) => {
-    return <div></div>;
+const Profile = ({ getProfileById, match, profile, loading, auth }) => {
+    useEffect(() => {
+        getProfileById(match.params.id);
+    }, [getProfileById]);
+    return <div>profile</div>;
 };
 
 Profile.propTypes = {
@@ -14,6 +17,10 @@ Profile.propTypes = {
     auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = ({ profile, auth }) => ({ profile, auth });
+const mapStateToProps = ({ profile: { profile, loading }, auth }) => ({
+    loading,
+    profile,
+    auth,
+});
 
 export default connect(mapStateToProps, { getProfileById })(Profile);
